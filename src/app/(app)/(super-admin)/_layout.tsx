@@ -106,6 +106,12 @@ export default function SuperAdminLayout() {
             <View style={styles.main}>
                {/* Header */}
                <View style={styles.header}>
+                  <View style={styles.userInfo}>
+                     <Text style={styles.userName}>
+                        {user?.name || "Admin"}
+                     </Text>
+                     <Text style={styles.userRole}>Super Admin</Text>
+                  </View>
                   <TouchableOpacity
                      onPress={() => setSidebarOpen(!sidebarOpen)}
                      style={styles.menuButton}
@@ -116,13 +122,6 @@ export default function SuperAdminLayout() {
                         color="#1f2937"
                      />
                   </TouchableOpacity>
-                  <View style={styles.centerInfo}>
-                     <Text style={styles.userName}>
-                        {user?.name || "Admin"}
-                     </Text>
-                     <Text style={styles.userRole}>Super Admin</Text>
-                  </View>
-                  <View style={styles.rightPlaceholder} />
                </View>
 
                {/* Content */}
@@ -153,22 +152,22 @@ const styles = StyleSheet.create({
    sidebar: {
       width: 280,
       backgroundColor: "#ffffff",
-      borderRightWidth: 1,
-      borderRightColor: "#e5e7eb",
+      borderLeftWidth: 1,
+      borderLeftColor: "#e5e7eb",
       padding: 20,
       position: "absolute",
       top: 0,
       bottom: 0,
-      left: -280,
+      right: -280,
       zIndex: 20,
       shadowColor: "#000",
-      shadowOffset: { width: 2, height: 0 },
+      shadowOffset: { width: -2, height: 0 },
       shadowOpacity: 0.1,
       shadowRadius: 8,
       elevation: 5,
    },
    sidebarOpen: {
-      left: 0,
+      right: 0,
    },
    adminInfo: {
       flexDirection: "row",
@@ -245,8 +244,20 @@ const styles = StyleSheet.create({
    },
    menuButton: {
       padding: 8,
-      width: 40,
    },
+   userInfo: {
+      alignItems: "flex-start",
+   },
+   userName: {
+      fontSize: 14,
+      fontWeight: "600",
+      color: "#1f2937",
+   },
+   userRole: {
+      fontSize: 12,
+      color: "#6b7280",
+   },
+
    centerInfo: {
       alignItems: "center",
       flex: 1,
@@ -258,18 +269,6 @@ const styles = StyleSheet.create({
       flexDirection: "row",
       alignItems: "center",
       gap: 16,
-   },
-   userInfo: {
-      alignItems: "flex-end",
-   },
-   userName: {
-      fontSize: 14,
-      fontWeight: "600",
-      color: "#1f2937",
-   },
-   userRole: {
-      fontSize: 12,
-      color: "#6b7280",
    },
    overlay: {
       ...StyleSheet.absoluteFillObject,
